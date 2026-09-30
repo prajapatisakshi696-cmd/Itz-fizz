@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Syne", system-ui, sans-serif;
+  --font-body: "Manrope", system-ui, sans-serif;
+  --color-ink: #05060f;
+  --color-violet: #7c5cff;
+  --color-pink: #ff5fa2;
+  --color-ice: #5cc8ff;
+}
+
+html, body { background: var(--color-ink); overflow-x: hidden; }
+body { font-family: var(--font-body); color: #e8e9f5; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}
