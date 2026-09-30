@@ -45,6 +45,7 @@ export default function Hero() {
     const ctx = gsap.context(() => {
       // SVG parts apne center se rotate/scale hon
       gsap.set(".hp-cup, .hp-ring", { transformOrigin: "50% 50%" });
+      gsap.set(".hp-spin", { transformPerspective: 1000, transformOrigin: "50% 50%" });
 
       /* ---------- 1. LOAD ANIMATION (inner wrappers) ---------- */
       const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
@@ -101,6 +102,7 @@ intro
   .to(".glow", { x: "-25vw", scale: 1.2, duration: 1 }, 0)
   .to(".bg-1", { opacity: 1, duration: 1 }, 0)
   .to(".scroll-hint", { autoAlpha: 0, duration: 0.3 }, 0)
+  .to(".hp-spin", { rotationY: 360, duration: 1, ease: "power2.inOut" }, 0)
 
   /* STAGE 2 (1-2): text jaata hai, LEFT cup par zoom */
   .to([".scroll-copy", ".scroll-stats"], { y: -70, autoAlpha: 0, duration: 0.8 }, 1)
@@ -120,6 +122,7 @@ intro
   .to(".scroll-product", { x: 0, y: "-6vh", scale: desk ? 1.4 : 1.1, rotate: 0, duration: 1 }, 3)
   .to(".hp-ring", { rotate: 360, scale: 1, duration: 1 }, 3)
   .to(".glow", { scale: 1.3, duration: 1 }, 3)
+  .to(".hp-spin", { rotationY: 720, duration: 1, ease: "power2.inOut" }, 3)
   .fromTo(c3, { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.6 }, 3.4);
         }
       );
@@ -154,11 +157,13 @@ intro
       <div className="glow pointer-events-none absolute left-1/2 top-1/2 h-[70vmin] w-[70vmin] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(124,92,255,0.45),rgba(255,95,162,0.18)_50%,transparent_70%)] opacity-70 blur-3xl will-change-transform" />
 
       {/* product */}
-      <div className="scroll-product absolute inset-0 flex items-center justify-center will-change-transform [perspective:1000px]">
-        <div className="intro-product w-[78vw] max-w-[520px] md:w-[38vw]">
-          <Headphone className="w-full drop-shadow-[0_30px_60px_rgba(124,92,255,0.35)]" />
-        </div>
-      </div>
+<div className="scroll-product absolute inset-0 flex items-center justify-center will-change-transform [perspective:1000px]">
+  <div className="intro-product w-[78vw] max-w-[520px] md:w-[38vw]">
+    <div className="hp-spin">
+      <Headphone className="w-full drop-shadow-[0_30px_60px_rgba(124,92,255,0.35)]" />
+    </div>
+  </div>
+</div>
 
       {/* headline + tagline */}
       <div className="scroll-copy relative z-10 px-6 pt-28 md:px-12 md:pt-40">
